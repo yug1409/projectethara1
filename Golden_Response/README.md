@@ -140,9 +140,7 @@ cd backend
 ### 2. Install dependencies
 
 ```bash
-npm init -y
-npm install express mongoose dotenv cors bcryptjs jsonwebtoken express-rate-limit
-npm install nodemon --save-dev
+npm install 
 ```
 
 ### 3. Create `.env` file
@@ -176,21 +174,13 @@ http://localhost:5000
 cd frontend
 ```
 
-### 2. Create React app using Vite
-
-```bash
-npm create vite@latest
-```
-
-### 3. Install dependencies
+### 2. Install dependencies
 
 ```bash
 npm install
-npm install axios react-router-dom
-npm install -D tailwindcss postcss autoprefixer
 ```
 
-### 4. Start frontend server
+### 3. Start frontend server
 
 ```bash
 npm run dev
