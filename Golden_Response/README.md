@@ -10,7 +10,7 @@ It supports customer authentication, food browsing, cart management, order place
 ## Project Structure
 
 ```text
-food-order-management/
+Golden_Response/
 │
 ├── backend/
 │   ├── config/
