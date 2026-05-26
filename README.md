@@ -1,144 +1,290 @@
-# 🍔 Food Order Management System
 
-A full-stack Food Order Management Website built using the MERN Stack.
+# Food Order Management Website — MERN Stack
 
-This application allows users to browse food items, add them to cart, place orders, and track their order status. It also includes an admin dashboard for managing food items and orders.
+A full-stack Food Order Management System built using the MERN stack.  
+It supports customer authentication, food browsing, cart management, order placement, and basic admin order/food management flow.
 
 ---
+---
 
-# 🚀 Tech Stack
+## Project Structure
 
-## Frontend
+```text
+food-order-management/
+│
+├── backend/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── foodController.js
+│   │   └── orderController.js
+│   ├── middleware/
+│   │   └── authMiddleware.js
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Food.js
+│   │   └── Order.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── foodRoutes.js
+│   │   └── orderRoutes.js
+│   ├── utils/
+│   │   └── generateToken.js
+│   ├── server.js
+│   └── .env
+│
+└── frontend/
+    ├── src/
+    │   ├── api/
+    │   │   └── axios.js
+    │   ├── components/
+    │   │   └── FoodCard.jsx
+    │   ├── context/
+    │   │   └── CartContext.jsx
+    │   ├── pages/
+    │   │   ├── Foods.jsx
+    │   │   ├── Cart.jsx
+    │   │   └── AdminDashboard.jsx
+    │   ├── App.jsx
+    │   └── main.jsx
+````
+
+---
+## Tech Stack
+
+### Frontend
 - React.js
-- React Router DOM
-- Context API
+- React Router
 - Axios
+- Context API
 - Tailwind CSS
-- Vite
 
-## Backend
+### Backend
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 - JWT Authentication
-- bcryptjs
-- Express Rate Limit
+- bcrypt.js
+- express-rate-limit
 
 ---
 
-# 📁 Project Structure
+## Features
 
-```plaintext
-food-order-management/
-│
-├── backend/
-│
-└── frontend/
-```
-
----
-
-# ✨ Features
-
-## User Features
-- User Registration & Login
-- JWT Authentication
-- Browse Food Items
-- Add to Cart
-- Checkout System
-- Order Placement
-- View Order History
-- Responsive UI
-
-## Admin Features
-- Admin Dashboard
-- Manage Orders
-- Update Order Status
-- Manage Food Items
-
----
-
-# 🔐 Authentication
-
+### Customer Features
+- User registration
+- User login
 - JWT-based authentication
-- Password hashing using bcryptjs
-- Protected routes
-- Admin authorization
+- Browse available food items
+- Add food items to cart
+- Remove items from cart
+- View total cart amount
+- Proceed to checkout
+- Place food orders
+- View personal order history
 
----
+### Admin Features
+- Admin-protected routes
+- Add food items
+- Update food items
+- Delete food items
+- View all orders
+- Update order status
+- Basic admin dashboard
 
-# ⚙️ Environment Variables
 
-Create `.env` file inside backend folder:
+## Backend Setup
 
-```env
-PORT=5000
-
-MONGO_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
-```
-
----
-
-# 📦 Installation
-
-## Clone Repository
-
-```bash
-git clone https://github.com/yug1409/food-order-management.git
-```
-
----
-
-# Backend Setup
+### 1. Go to backend folder
 
 ```bash
 cd backend
+```
 
-npm install
+### 2. Install dependencies
 
+```bash
+npm init -y
+npm install express mongoose dotenv cors bcryptjs jsonwebtoken express-rate-limit
+npm install nodemon --save-dev
+```
+
+### 3. Create `.env` file
+
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/food-order-db
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
+```
+
+### 4. Start backend server
+
+```bash
 npm run dev
 ```
 
-Backend runs on:
+Backend will run on:
 
-```plaintext
+```text
 http://localhost:5000
 ```
 
 ---
 
-# Frontend Setup
+## Frontend Setup
+
+### 1. Go to frontend folder
 
 ```bash
 cd frontend
+```
 
+### 2. Create React app using Vite
+
+```bash
+npm create vite@latest
+```
+
+### 3. Install dependencies
+
+```bash
 npm install
+npm install axios react-router-dom
+npm install -D tailwindcss postcss autoprefixer
+```
 
+### 4. Start frontend server
+
+```bash
 npm run dev
 ```
 
-Frontend runs on:
+Frontend will run on:
 
-```plaintext
+```text
 http://localhost:5173
 ```
 
 ---
 
-# 🛠️ Future Improvements
+## API Endpoints
 
-- Online Payment Integration
-- Image Upload System
-- Email Notifications
-- Delivery Tracking
-- Search & Filter
-- Reviews & Ratings
-- Redux Toolkit Integration
+### Auth Routes
+
+| Method | Endpoint             | Description       |
+| ------ | -------------------- | ----------------- |
+| POST   | `/api/auth/register` | Register new user |
+| POST   | `/api/auth/login`    | Login user        |
+
+### Food Routes
+
+| Method | Endpoint         | Description             | Access |
+| ------ | ---------------- | ----------------------- | ------ |
+| GET    | `/api/foods`     | Get all available foods | Public |
+| POST   | `/api/foods`     | Create food item        | Admin  |
+| PUT    | `/api/foods/:id` | Update food item        | Admin  |
+| DELETE | `/api/foods/:id` | Delete food item        | Admin  |
+
+### Order Routes
+
+| Method | Endpoint                 | Description                 | Access |
+| ------ | ------------------------ | --------------------------- | ------ |
+| POST   | `/api/orders`            | Place order                 | User   |
+| GET    | `/api/orders/my-orders`  | Get logged-in user's orders | User   |
+| GET    | `/api/orders`            | Get all orders              | Admin  |
+| PUT    | `/api/orders/:id/status` | Update order status         | Admin  |
 
 ---
 
+## Application Flow
 
+```text
+1. User registers or logs in.
+2. JWT token is generated and stored.
+3. User browses available food items.
+4. User adds food items to cart.
+5. Cart calculates total amount.
+6. User places order.
+7. Backend verifies JWT token.
+8. Order is stored in MongoDB.
+9. Admin views all orders.
+10. Admin updates order status.
+11. User tracks order status from order history.
+```
 
+---
+
+## Deployment
+
+### Frontend Deployment
+
+Frontend can be deployed on:
+
+* Vercel
+* Netlify
+
+Before deployment, update API base URL in:
+
+```js
+frontend/src/api/axios.js
+```
+
+Change:
+
+```js
+baseURL: "http://localhost:5000/api"
+```
+
+To your deployed backend URL:
+
+```js
+baseURL: "https://your-backend-domain.com/api"
+```
+
+### Backend Deployment
+
+Backend can be deployed on:
+
+* Render
+* Railway
+* Cyclic
+
+Add these environment variables in the hosting dashboard:
+
+```env
+MONGO_URI=
+JWT_SECRET=
+NODE_ENV=production
+```
+
+### Database
+
+Use MongoDB Atlas for production database hosting.
+
+---
+
+## Future Improvements
+
+* Payment gateway integration
+* Food image upload using Cloudinary
+* Email notification after order placement
+* Live order tracking
+* Coupon and discount system
+* Admin analytics dashboard
+* Search and filter food items
+* Socket.io real-time order updates
+
+---
+
+## Conclusion
+
+This project provides a strong MERN stack foundation for a food order management system.
+It includes authentication, food browsing, cart handling, order placement, admin access, and deployment guidance.
+
+The project is suitable as a starter full-stack application and can be extended into a production-ready food delivery platform.
+
+```
+```
