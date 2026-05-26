@@ -535,6 +535,18 @@ exports.adminOnly = (req, res, next) => {
   if (req.user && req.user.role === "admin") {
 };
 """,
+    "backend/middleware/errorMiddleware.js": """
+const errorHandler = (err, req, res, next) => {
+  const statusCode = res.statusCode || 500;
+
+  res.status(statusCode).json({
+    success: false,
+    message: err.message || "Server Error",
+  });
+};
+
+module.exports = errorHandler;
+""",
 
 
     # =========================================================================
