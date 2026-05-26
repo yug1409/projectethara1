@@ -15,39 +15,73 @@ food-order-management/
 ├── backend/
 │   ├── config/
 │   │   └── db.js
+│   │
 │   ├── controllers/
 │   │   ├── authController.js
 │   │   ├── foodController.js
 │   │   └── orderController.js
+│   │
 │   ├── middleware/
 │   │   └── authMiddleware.js
+│   │
 │   ├── models/
-│   │   ├── User.js
 │   │   ├── Food.js
-│   │   └── Order.js
+│   │   ├── Order.js
+│   │   └── User.js
+│   │
 │   ├── routes/
 │   │   ├── authRoutes.js
 │   │   ├── foodRoutes.js
 │   │   └── orderRoutes.js
+│   │
 │   ├── utils/
 │   │   └── generateToken.js
-│   ├── server.js
-│   └── .env
+│   │
+│   ├── .env
+│   ├── package-lock.json
+│   └── package.json
 │
-└── frontend/
-    ├── src/
-    │   ├── api/
-    │   │   └── axios.js
-    │   ├── components/
-    │   │   └── FoodCard.jsx
-    │   ├── context/
-    │   │   └── CartContext.jsx
-    │   ├── pages/
-    │   │   ├── Foods.jsx
-    │   │   ├── Cart.jsx
-    │   │   └── AdminDashboard.jsx
-    │   ├── App.jsx
-    │   └── main.jsx
+├── frontend/
+│   ├── node_modules/
+│   ├── public/
+│   │
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── axios.js
+│   │   │
+│   │   ├── assets/
+│   │   │
+│   │   ├── components/
+│   │   │   ├── AdminRoute.jsx
+│   │   │   ├── FoodCard.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── ProtectedRoute.jsx
+│   │   │
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx
+│   │   │   └── CartContext.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   ├── Cart.jsx
+│   │   │   ├── Checkout.jsx
+│   │   │   ├── Foods.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── MyOrders.jsx
+│   │   │   └── Register.jsx
+│   │   │
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── README.md
+│   └── vite.config.js
 ````
 
 ---
