@@ -17,7 +17,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-
+app.use(errorHandler);
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
